@@ -1,9 +1,12 @@
 let m = require("mithril")
+import infinite from "mithril-infinite";
+let imagesLoaded = require("imagesloaded");
 let photos = require("../models/Photos")
 
 const photosBoard = {
   oninit: photos.loadList,
   view: function () {
+    //Photos' random positions
     let photosLength = photos.list.length;
     let preBuffer = new Array();
     for(let a = 0; a < photosLength; a++) {
@@ -13,23 +16,40 @@ const photosBoard = {
       const j = Math.floor(Math.random() * (i + 1));
       [preBuffer[i], preBuffer[j]] = [preBuffer[j], preBuffer[i]];
     }
+    console.log(preBuffer)
+    return preBuffer
 
+    //For testing randomly display photos
     // function onlyUnique(value, index, self) {
     //   return self.indexOf(value) === index;
     // }
     // let unique = preBuffer.filter(onlyUnique);
     // console.log(unique);
 
-    return m(".container", preBuffer.map(function (photo) {
-      let imgSrc = photo.download_url;
-      let author = photo.author;
-      return m('figure',
-        m('img',{src:imgSrc}),
-        m('figcaption',
-          m('a', author))
-      );
-    }))
+
+    // return m('#container', preBuffer.map(function (photo) {
+    //   return m('figure.photo',
+    //     m('img',{src:`${photo.download_url}`}),
+    //     m('figcaption',
+    //       m('a', `${photo.author}`))
+    //   );
+    // }))
   }
 }
 
-module.exports = photosBoard;
+const item = data => {
+  console.log(data)
+  return m('figure.photo',
+    m('img',{src:`${data.download_url}`}),
+    m('figcaption',
+      m('a', `${data.author}`))
+  );
+}
+
+export default {
+  view: () =>
+  m(infinite, {
+    item,
+    pageData: photosBoard
+  })
+};

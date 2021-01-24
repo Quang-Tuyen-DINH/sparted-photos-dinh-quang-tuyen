@@ -42,7 +42,7 @@ figcaption {
   justify-self: start;
 }
 
-#container {
+.container {
   column-count: 3;
   column-gap: 10px;
 }

@@ -1,5 +1,11 @@
-let m = require("mithril")
+import m from "mithril";
+import { PhotosList } from "./views/PhotosList";
 
-let PhotosList = require("./views/PhotosList")
+const App = () => {
+  return {
+    view: () => m(PhotosList)
+  };
+};
 
-m.mount(document.body, PhotosList);
+// m.mount(document.getElementById("app"), App);
+m.mount(document.body, PhotosList)

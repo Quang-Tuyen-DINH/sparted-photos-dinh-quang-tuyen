@@ -8,4 +8,4 @@ const App = () => {
 };
 
 // m.mount(document.getElementById("app"), App);
-m.mount(document.body, PhotosList)
+m.mount(document.body, PhotosList);

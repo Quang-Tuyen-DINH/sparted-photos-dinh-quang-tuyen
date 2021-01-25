@@ -1,11 +1,9 @@
 import m from "mithril";
 import infinite from "mithril-infinite";
-// import imagesLoaded from "imagesloaded";
 import randomPhotos from "../models/Photos";
 
 const Photos = (pageNum) => {
   const photos = randomPhotos(pageNum);
-  console.log(photos);
   return photos;
 };
 
